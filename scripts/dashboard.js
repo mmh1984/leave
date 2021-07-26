@@ -156,6 +156,26 @@ function delete_claim(id){
 }
 
 function load_holiday(){
+	var year=new Date().getFullYear();
+
+	var url="https://calendarific.com/api/v2/holidays?api_key=e7bdcdbdfaa8785c3dbfed3a7932e480b654f637&country=BN&year=" + year;
+	$.getJSON(url,function(data){
+		var result=data.response.holidays;
+		var content="";
+		for(i=0;i<result.length;i++){
+			var dt=result[i].date.datetime.day +"/";
+			dt+=result[i].date.datetime.month +"/";
+			dt+=result[i].date.datetime.year
+			content+="<tr>";
+			
+			content+="<td>"+ dt +"</td>";
+			//alert(result[i].date.iso);
+			content+="<td>"+ result[i].name +"</td>";
+			content+="</tr>";
+		}
+		$("#tblholiday").html(content);
+	});
+	/*
   $.ajax({
 	type:"POST",
 	data:{
@@ -168,9 +188,34 @@ function load_holiday(){
 	}  
 	  
    });	
+   */
 }
 
 function load_today_holiday(){
+	var year=new Date().getFullYear();
+
+	var url="https://calendarific.com/api/v2/holidays?api_key=e7bdcdbdfaa8785c3dbfed3a7932e480b654f637&country=BN&year=" + year;
+	$.getJSON(url,function(data){
+		var result=data.response.holidays;
+		var content="";
+		for(i=0;i<result.length;i++){
+			var month=result[i].date.datetime.month;
+			if(month==$("#holmonth").val()){
+			var dt=result[i].date.datetime.day +"/";
+			dt+=result[i].date.datetime.month +"/";
+			dt+=result[i].date.datetime.year
+			
+			content+="<tr>";
+			
+			content+="<td>"+ dt +"</td>";
+			//alert(result[i].date.iso);
+			content+="<td>"+ result[i].name +"</td>";
+			content+="</tr>";
+			}
+		}
+		$("#tblholiday").html(content);
+	});
+	/*
   $.ajax({
 	type:"POST",
 	data:{
@@ -184,6 +229,7 @@ function load_today_holiday(){
 	}  
 	  
    });	
+   */
 }
 
 function update_password(){

@@ -93,7 +93,7 @@ $username=$_SESSION["username"];
 <div class="container" style="padding-top:30px;padding-bottom:30px;">
   <div class="row">
     <div class="col">
-      <h3 class="text-center text-secondary">Public Holidays (2020)</h3>
+      <h3 class="text-center text-secondary">Public Holidays (<?php echo date('Y');?>)</h3>
       Select Month: <select id="holmonth" style='padding:5px;margin:px;width:200px' onChange="load_today_holiday()">
       <option value='1'>January</option>
       <option value='2'>February</option>
@@ -332,6 +332,7 @@ $(document).ready(function(e) {
 	document.getElementById('leavedate').valueAsDate = new Date();
 	var today=new Date();
 	var month=today.getMonth()+1;
+  load_holiday();
 	$("#holmonth").val(month)
 	load_today_holiday();
     load_staff_leave();

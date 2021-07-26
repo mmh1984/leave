@@ -185,6 +185,11 @@ $(document).ready(function(e) {
 	
 	load_balance($("#leavetype").val());
 	$("#startdate").val()
+
+  $("#sMM").val(new Date().getMonth())
+  $("#eMM").val(new Date().getMonth())
+  //alert(new Date().getMonth());
+  //alert(new Date().getMonth());
 });
 var balance=0;
 var daysapplied=0;
